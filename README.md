@@ -1,4 +1,4 @@
-# Tarot Content Platform
+# Arcana Atlas
 
 A Django publishing platform for card references, editorial articles, and structured content collections.
 
