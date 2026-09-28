@@ -1,0 +1,147 @@
+from django.db import models
+
+
+    
+    
+CHOICES = [
+    ('Мечи', (
+            ('Swords_1', 'Туз мечей'),
+            ('Swords_2', 'Двойка мечей'),
+            ('Swords_3', 'Тройка мечей'),
+            ('Swords_4', 'Четверка мечей'),
+            ('Swords_5', 'Пятерка мечей'),
+            ('Swords_6', 'Шестерка мечей'),
+            ('Swords_7', 'Семерка мечей'),
+            ('Swords_8', 'Восьмерка мечей'),
+            ('Swords_9', 'Девятка мечей'),
+            ('Swords_10', 'Десятка мечей'),
+            ('Swords_11', 'Паж мечей'),
+            ('Swords_12', 'Рыцарь мечей'),
+            ('Swords_13', 'Королева мечей'),
+            ('Swords_14', 'Король мечей'),
+        )
+    ),
+    ('Жезлы', (
+            ('Woods_1', 'Туз жезлов'),
+            ('Woods_2', 'Двойка жезлов'),
+            ('Woods_3', 'Тройка жезлов'),
+            ('Woods_4', 'Четверка жезлов'),
+            ('Woods_5', 'Пятерка жезлов'),
+            ('Woods_6', 'Шестерка жезлов'),
+            ('Woods_7', 'Семерка жезлов'),
+            ('Woods_8', 'Восьмерка жезлов'),
+            ('Woods_9', 'Девятка жезлов'),
+            ('Woods_10', 'Десятка жезлов'),
+            ('Woods_11', 'Паж жезлов'),
+            ('Woods_12', 'Рыцарь жезлов'),
+            ('Woods_13', 'Королева жезлов'),
+            ('Woods_14', 'Король жезлов'),
+        )
+    ),
+    ('Пентакли', (
+            ('Penta_1', 'Туз пентаклей'),
+            ('Penta_2', 'Двойка пентаклей'),
+            ('Penta_3', 'Тройка пентаклей'),
+            ('Penta_4', 'Четверка пентаклей'),
+            ('Penta_5', 'Пятерка пентаклей'),
+            ('Penta_6', 'Шестерка пентаклей'),
+            ('Penta_7', 'Семерка пентаклей'),
+            ('Penta_8', 'Восьмерка пентаклей'),
+            ('Penta_9', 'Девятка пентаклей'),
+            ('Penta_10', 'Десятка пентаклей'),
+            ('Penta_11', 'Паж пентаклей'),
+            ('Penta_12', 'Рыцарь пентаклей'),
+            ('Penta_13', 'Королева пентаклей'),
+            ('Penta_14', 'Король пентаклей'),
+        )
+    ),
+    ('Кубки', (
+            ('Cups_1', 'Туз кубков'),
+            ('Cups_2', 'Двойка кубков'),
+            ('Cups_3', 'Тройка кубков'),
+            ('Cups_4', 'Четверка кубков'),
+            ('Cups_5', 'Пятерка кубков'),
+            ('Cups_6', 'Шестерка кубков'),
+            ('Cups_7', 'Семерка кубков'),
+            ('Cups_8', 'Восьмерка кубков'),
+            ('Cups_9', 'Девятка кубков'),
+            ('Cups_10', 'Десятка кубков'),
+            ('Cups_11', 'Паж кубков'),
+            ('Cups_12', 'Рыцарь кубков'),
+            ('Cups_13', 'Королева кубков'),
+            ('Cups_14', 'Король кубков'),
+        )
+    ),
+    ('Старшие арканы', (
+            ('Grant_1', 'Дурак'),
+            ('Grant_2', 'Шут'),
+            ('Grant_3', 'Верховная жрица'),
+            ('Grant_4', 'Императрица'),
+            ('Grant_5', 'Император'),
+            ('Grant_6', 'Иерофант'),
+            ('Grant_7', 'Влюбленные'),
+            ('Grant_8', 'Колесница'),
+            ('Grant_9', 'Сила'),
+            ('Grant_10', 'Отшельник'),
+            ('Grant_11', 'Колесо фортуны'),
+            ('Grant_12', 'Справедливость'),
+            ('Grant_13', 'Повешенный'),
+            ('Grant_14', 'Смерть'),
+            ('Grant_15', 'Умеренность'),
+            ('Grant_16', 'Дьявол'),
+            ('Grant_17', 'Башня'),
+            ('Grant_18', 'Звезда'),
+            ('Grant_19', 'Луна'),
+            ('Grant_20', 'Солнце'),
+            ('Grant_21', 'Суд'),
+            ('Grant_22', 'Мир'),
+        )
+    ),
+    ]
+
+
+class CardsDesk(models.Model):
+    name = models.CharField(max_length=255, verbose_name='Название колоды', blank=True, null=True)
+
+
+    image = models.ImageField(upload_to='media/',verbose_name='Картинка колоды')
+
+    moderate = models.BooleanField(verbose_name='Опубликовано.', default=False)
+
+    desk_slug = models.SlugField(unique=True, verbose_name='Ссылка на колоду', help_text='Автоматическое заполнение', blank=True, null=True)
+
+    def get_absolute_url(self):
+        return f'/cards/{self.desk_slug}/'
+    
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Колода'
+        verbose_name_plural = 'Колоды'
+
+
+class Card(models.Model):
+    
+    desk = models.ForeignKey(CardsDesk, on_delete=models.CASCADE, verbose_name='Колода')
+    card_type = models.CharField(choices=CHOICES, max_length=32,verbose_name='Масть карты')
+
+    image = models.ImageField(upload_to='media/cards/',verbose_name='Картинка карты', blank=True, null=True)
+
+    basic_significance = models.TextField(max_length=1024,verbose_name='Базовое значение', blank=True, null=True)
+
+
+    def __str__(self):
+        return f'{self.desk} {self.card_type}'
+    
+    def card_name(self):
+        return self.get_desk_display()
+    
+    def get_absolute_url(self):
+        return f'/cards/{self.desk.desk_slug}/{self.card_type}/'
+    
+
+    class Meta:
+        verbose_name = 'Карта'
+        verbose_name_plural = 'Карты'

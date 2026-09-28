@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container cards">   
+
+        {% comment %} nav {% endcomment %}
+
+        <div class="row">
+
+            <div class="col-sm-8">
+              <div class="d-flex flex-column text-white">
+                <nav class="breadcrumb p-2">
+                    <a class="breadcrumb-item link-light" href="{% url 'home' %}">Главная</a>
+                    <a class="breadcrumb-item link-light" href="{% url 'cards' %}">Колоды</a>
+                </nav>
+                <h1 class="text-white align-text-bottom">Колоды</h1>
+              </div>
+            </div>
+
+            <div class="d-flex col-sm-4 border justify-content-center align-items-center">
+                <h1 class="text-white text-center align-items-center"> Реклама </h1> 
+            </div>
+          </div>
+
+
+        <div class="row row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 pt-5 pb-5">
+
+          {% for desk in desk_list %}
+            <div class="col">
+              <div class="card h-100" style="width: 10rem;">
+                <a class="text-dark" href="{{ desk.get_absolute_url }}"> 
+                  <img src="{{ desk.image.url }}" class="card-img-top" alt="{{ desk.name }} таро">
+                  <div class="card-body">
+                    <p class="card-text text-center">Таро {{ desk.name }}</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+
+      
+
+        </div>
+
+
+
+
+        
+
+    </div>
+{% endblock %}

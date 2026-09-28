@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <title>{% block title %} Witch Tarrot {% endblock %}</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'js/scroller.js' %}">
+  <link href="{% static 'css/blog-style.css' %}" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+  <main>
+
+    {% block header %}
+    <div class="container mb-5">
+      <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <a href="{% url 'home' %}" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+          <span class="fs-4 text-white">Witch Tarrot</span>
+        </a>
+  
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="{% url 'home' %}" class="nav-link px-2 link-light">Главная</a></li>
+          <li><a href="{% url 'blog' %}" class="nav-link px-2 link-light">Блог</a></li>
+          <li><a href="{% url 'cards' %}" class="nav-link px-2 link-light">Колоды</a></li>
+          <li><a href="{% url 'about' %}" class="nav-link px-2 link-light">О нас</a></li>
+        </ul>
+  
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Чего желаете?" name="search" aria-label="Search">
+          <button class="btn btn-outline-light" type="submit">Поиск</button>
+        </form>
+      </header>
+    </div>
+    {% endblock %}
+
+
+
+    {% block content %}
+
+    <div class="px-3 pt-5 justify-content-center">
+      <div class="container justify-content-center">
+        <div class="row">
+          
+          <div class="d-flex align-items-center justify-content-center col">
+            <img src="{% static 'res/landing_images/image_2.png' %}" class="img-fluid rounded-top langing-image" alt="">
+          </div>
+
+          <div class="col-lg-6 col-md-8 mx-auto text-white d-flex flex-column justify-content-center">
+            <h1 class="text-center mb-3 landing-h">Не отрицай самого себя</h1>
+            <p class="landing-p">Тень является источником глубокого обмана себя. Отрицая свою теневую сторону личности, каждый из нас приписывает ее элементы другим людям, что иногда расходится с реальным положением вещей. Это защита нашей психики от принятия факта наличия негативной части себя. Эту ловушку специалисты назвали проекцией.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <svg class="arrows fixed-bottom">
+      <path class="a1" d="M0 0 L30 32 L60 0"></path>
+      <path class="a2" d="M0 20 L30 52 L60 20"></path>
+      <path class="a3" d="M0 40 L30 72 L60 40"></path>
+    </svg>
+
+    <div class="px-3 justify-content-center second">
+      <div class="container justify-content-center">
+        <div class="row flex-column">
+          
+          <div class="col-lg-6 col-md-8 mx-auto text-white d-flex flex-column justify-content-center">
+            <h2 class="text-center mb-3 landing-h">Мы устали от ложной информации.</h2>
+            <p class="mt-2 second-p-landing text-center">Поэтому мы решили собирать eё самостоятельно.</p>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-center row second-p-landing">
+            <div class="d-flex col-sm-4 flex-column align-items-center justify-content-center">
+              <a href="{% url 'blog' %}" class="nav-link">
+              <img src="{% static 'res/landing_images/blog.png' %}" class="img-fluid" alt="">
+              <p class="mt-2 second-p-landing text-center text-white">Блог</p>
+              </a>
+            </div>
+            <div class="d-flex col-sm-4 flex-column  align-items-center justify-content-center">
+              <a href="#" class="nav-link">
+              <img src="{% static 'res/landing_images/cards.png' %}" class="img-fluid" alt="">
+              <p class="mt-2 second-p-landing text-center text-white">Колоды</p>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    {% endblock content %}
+    
+
+
+  </main>
+
+  {% block footer %}
+  <footer class=" text-center text-lg-start text-white pt-5 {% block sticky %} {% endblock %}" style="background-color:#000000;">
+    <!-- Grid container -->
+    <div class="container p-4">
+  
+  
+  
+      <!-- Section: Text -->
+      <section class="mb-4">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+          distinctio earum repellat quaerat voluptatibus placeat nam,
+          commodi optio pariatur est quia magnam eum harum corrupti dicta,
+          aliquam sequi voluptate quas.
+        </p>
+      </section>
+      <!-- Section: Text -->
+  
+  
+    </div>
+    <!-- Grid container -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2023 Copyright:
+      <a class="text-white" href="#">witch-tarrot.ru</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  {% endblock %}
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="{% static 'js/filter.js' %}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
+</body>
+
+</html>
